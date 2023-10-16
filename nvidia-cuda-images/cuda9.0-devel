@@ -1,1 +1,1 @@
-FROM nvidia/cuda:9.0-devel
+FROM nvidia/digits:6.0
