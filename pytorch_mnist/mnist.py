@@ -3,7 +3,7 @@ from __future__ import print_function
 import argparse
 import os
 
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 from torchvision import datasets, transforms
 import torch
 import torch.distributed as dist
@@ -32,7 +32,7 @@ class Net(nn.Module):
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
 
-def train(args, model, device, train_loader, optimizer, epoch, writer):
+def train(args, model, device, train_loader, optimizer, epoch):
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
@@ -46,9 +46,9 @@ def train(args, model, device, train_loader, optimizer, epoch, writer):
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()))
             niter = epoch * len(train_loader) + batch_idx
-            writer.add_scalar('loss', loss.item(), niter)
+         #   writer.add_scalar('loss', loss.item(), niter)
 
-def test(args, model, device, test_loader, writer, epoch):
+def test(args, model, device, test_loader, epoch):
     model.eval()
     test_loss = 0
     correct = 0
@@ -62,7 +62,7 @@ def test(args, model, device, test_loader, writer, epoch):
 
     test_loss /= len(test_loader.dataset)
     print('\naccuracy={:.4f}\n'.format(float(correct) / len(test_loader.dataset)))
-    writer.add_scalar('accuracy', float(correct) / len(test_loader.dataset), epoch)
+   # writer.add_scalar('accuracy', float(correct) / len(test_loader.dataset), epoch)
 
 
 def should_distribute():
@@ -105,7 +105,7 @@ def main():
     if use_cuda:
         print('Using CUDA')
 
-    writer = SummaryWriter(args.dir)
+ #   writer = SummaryWriter(args.dir)
 
     torch.manual_seed(args.seed)
 
@@ -140,8 +140,8 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
     for epoch in range(1, args.epochs + 1):
-        train(args, model, device, train_loader, optimizer, epoch, writer)
-        test(args, model, device, test_loader, writer, epoch)
+        train(args, model, device, train_loader, optimizer, epoch)
+        test(args, model, device, test_loader, epoch)
 
     if (args.save_model):
         torch.save(model.state_dict(),"/mount/mnist_cnn.pt")
