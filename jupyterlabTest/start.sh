@@ -8,8 +8,8 @@ touch main.py
 mv main.py jupyter_workspace/
 
 apt-get update
-apt-get install expect
-apt-get install jq
+apt-get install expect -y
+apt-get install jq -y
 jupyter lab --generate-config 
 
 #使用expect处理交互式命令行程序
