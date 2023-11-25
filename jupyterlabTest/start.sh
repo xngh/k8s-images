@@ -1,3 +1,12 @@
+#!/bin/bash
+cd ~
+mkdir jupyter_workspace
+
+# to do, wget the zip file and unzip the contents to jupyter workspace
+# we use the following 2 rows as example instead
+touch main.py
+mv main.py jupyter_workspace/
+
 apt-get update
 apt-get install expect
 apt-get install jq
