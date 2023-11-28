@@ -6,6 +6,7 @@ mkdir jupyter_workspace
 # we use the following 2 rows as example instead
 touch main.py
 mv main.py jupyter_workspace/
+mv /root/welcome.md jupyter_workspace/welcome.md
 
 apt-get update
 apt-get install expect -y
