@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:1.11.0-cuda11.3-cudnn8-runtime
 RUN python -m pip install --upgrade pip \
-&& pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+&& pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 && pip install jupyterlab \
 && pip install torchvision \
 && apt-get update \
