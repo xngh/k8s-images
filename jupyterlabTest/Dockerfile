@@ -14,7 +14,9 @@ RUN apt-get update \
 #配置ssh
 RUN mkdir -p /var/run/sshd \
 && mkdir -p mkdir/root/.ssh/ \
-&& echo root:123456 | chpasswd
+&& echo root:${USER_PASSWORD} | chpasswd \
+&& sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+&& service ssh restart
 ENV PATH=/usr/local/bin/:$PATH \
     SHELL=/bin/bash
 # COPY jupyter_lab_config.py /root/.jupyter/
