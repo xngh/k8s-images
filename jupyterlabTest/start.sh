@@ -29,6 +29,6 @@ hashed_password=$(jq -r '.IdentityProvider.hashed_password' ~/.jupyter/jupyter_s
 
 # Update Jupyter Lab config file with the hashed password
 sed -i "s|^# c.ServerApp.password = .*|c.ServerApp.password = '$hashed_password'|" ~/.jupyter/jupyter_lab_config.py
-
+cd jupyter_workspace
 # Run Jupyter Lab
 jupyter lab --notebook-dir jupyter_workspace --ip 0.0.0.0 --port 8888 --allow-root --no-browser 
