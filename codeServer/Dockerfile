@@ -15,7 +15,7 @@ ENV PATH=/usr/local/bin/:$PATH \
 # COPY jupyter_lab_config.py /root/.jupyter/
 COPY welcome.md /root
 
-COPY start.sh edit_config.py requirements.txt .
+COPY start.sh edit_config.py requirements.txt /root
 COPY config.yaml /root/.config/code-server/
 RUN pip install -r requirements.txt \
 && chmod 777 start.sh
