@@ -13,10 +13,10 @@ RUN curl -fOL https://github.com/coder/code-server/releases/download/v4.19.0/cod
 ENV PATH=/usr/local/bin/:$PATH \
     SHELL=/bin/bash
 # COPY jupyter_lab_config.py /root/.jupyter/
-COPY welcome.md edit_config.py /root
+COPY welcome.md edit_config.py /root/
 
 COPY start.sh requirements.txt .
 COPY config.yaml /root/.config/code-server/
-RUN pip install -r /root/requirements.txt \
-&& chmod 777 start.sh
+RUN pip install -r requirements.txt 
+RUN chmod 777 start.sh
 CMD ["./start.sh"]
