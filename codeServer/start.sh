@@ -34,5 +34,5 @@ cd jupyter_workspace
 jupyter lab --notebook-dir jupyter_workspace --ip 0.0.0.0 --port 8888 --allow-root --no-browser &
 
 #启动code server
-python edit_config.py
+python /root/edit_config.py
 exec dumb-init /usr/bin/code-server /root/jupyter_workspace
