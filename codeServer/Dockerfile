@@ -17,5 +17,6 @@ COPY welcome.md /root
 
 COPY start.sh edit_config.py requirements.txt .
 COPY config.yaml /root/.config/code-server/
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt \
+&& chmod 777 start.sh
 CMD ["./start.sh"]
