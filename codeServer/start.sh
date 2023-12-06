@@ -31,7 +31,7 @@ hashed_password=$(jq -r '.IdentityProvider.hashed_password' ~/.jupyter/jupyter_s
 sed -i "s|^# c.ServerApp.password = .*|c.ServerApp.password = '$hashed_password'|" ~/.jupyter/jupyter_lab_config.py
 
 # Run Jupyter Lab，加上&使命令在后台执行而不阻塞当前脚本
-jupyter lab --notebook-dir jupyter_workspace --ip 0.0.0.0 --port 8888 --allow-root --no-browser &
+jupyter lab --notebook-dir /root/jupyter_workspace --ip 0.0.0.0 --port 8888 --allow-root --no-browser &
 cd jupyter_workspace
 #启动code server
 python /root/edit_config.py
