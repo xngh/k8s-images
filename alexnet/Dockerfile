@@ -4,6 +4,6 @@ RUN python -m pip install --upgrade pip \
 
 
 WORKDIR /app
-COPY Resnet50.py /app/Alexnet.py
+COPY Alexnet.py /app/Alexnet.py
 
 ENTRYPOINT [ "python", "-u","/app/Alexnet.py" ]
